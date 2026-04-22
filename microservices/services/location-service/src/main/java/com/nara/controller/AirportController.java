@@ -4,11 +4,14 @@ import com.nara.payload.request.AirportRequest;
 import com.nara.payload.response.AirportResponse;
 import com.nara.service.AirportService;
 import jakarta.validation.Valid;
-import lombok.Generated;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @RestController
 @RequiredArgsConstructor
@@ -26,4 +29,10 @@ public class AirportController {
     public ResponseEntity<AirportResponse> getAirportById(@PathVariable("id") Long id) throws Exception {
         return ResponseEntity.ok(airportService.getAirportById(id));
     }
+
+//    @GetMapping(path = "city/{cityId}")
+//    public ResponseEntity<List<AirportResponse>> getAllAirports(@PathVariable("cityId") Long cityId) throws Exception {
+//        return ResponseEntity.ok(airportService.getAirportById(id));
+//    }
+    
 }

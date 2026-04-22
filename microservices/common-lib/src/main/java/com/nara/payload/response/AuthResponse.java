@@ -12,5 +12,5 @@ public class AuthResponse {
     private String jwt;
     private String message;
     private String title;
-    private UserDTO userDTO;
+    private UserDTO user;
 }

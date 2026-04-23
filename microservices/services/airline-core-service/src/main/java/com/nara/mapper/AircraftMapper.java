@@ -30,7 +30,7 @@ public class AircraftMapper {
                 .build();
     }
 
-    public static AircraftResponse toResponse(Aircraft aircraft, Airline airline){
+    public static AircraftResponse toResponse(Aircraft aircraft){
         if(aircraft ==  null) return null;
         return AircraftResponse.builder()
                 .code(aircraft.getCode())
@@ -65,5 +65,26 @@ public class AircraftMapper {
                 .build();
     }
 
+    public static void updateEntity(Aircraft aircraft, AircraftRequest aircraftRequest){
+        if(aircraft ==  null|| aircraftRequest == null) return;
+
+                aircraft.setCode(aircraftRequest.getCode());
+                aircraft.setModel(aircraftRequest.getModel());
+                aircraft.setManufacturer(aircraftRequest.getManufacturer());
+                aircraft.setSeatingCapacity(aircraftRequest.getSeatingCapacity());
+                aircraft.setEconomySeats(aircraftRequest.getEconomySeats());
+                aircraft.setPremiumSeats(aircraftRequest.getPremiumSeats());
+                aircraft.setBusinessSeats(aircraftRequest.getBusinessSeats());
+                aircraft.setFirstClassSeats(aircraftRequest.getFirstClassSeats());
+                aircraft.setRangeKm(aircraftRequest.getRangeKm());
+                aircraft.setCruisingSpeedKmh(aircraftRequest.getCruisingSpeedKmh());
+                aircraft.setMaxAltitudeFt(aircraftRequest.getMaxAltitudeFt());
+                aircraft.setYearOfManufacture(aircraftRequest.getYearOfManufacture());
+                aircraft.setRegistrationDate(aircraftRequest.getRegistrationDate());
+                aircraft.setNextMaintenanceDate(aircraftRequest.getNextMaintenanceDate());
+                aircraft.setStatus(aircraftRequest.getStatus());
+                aircraft.setIsAvailable(aircraftRequest.getIsAvailable());
+                aircraft.setCurrentAirportId(aircraftRequest.getCurrentAirportId());
+    }
 
 }

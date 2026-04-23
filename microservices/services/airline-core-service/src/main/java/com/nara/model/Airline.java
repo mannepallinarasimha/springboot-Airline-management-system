@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.Instant;
 
@@ -17,6 +18,7 @@ import java.time.Instant;
 @AllArgsConstructor
 @Builder
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class Airline {
 
     @Id
@@ -50,7 +52,7 @@ public class Airline {
     @Embedded
     private Support support;
 
-    @Column(nullable = false)
+    @Column(updatable = false, nullable = false)
     @CreatedDate
     private Instant createdAt;
 

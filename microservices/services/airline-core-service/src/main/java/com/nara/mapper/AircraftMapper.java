@@ -33,6 +33,7 @@ public class AircraftMapper {
     public static AircraftResponse toResponse(Aircraft aircraft){
         if(aircraft ==  null) return null;
         return AircraftResponse.builder()
+                .id(aircraft.getId())
                 .code(aircraft.getCode())
                 .model(aircraft.getModel())
                 .manufacturer(aircraft.getManufacturer())

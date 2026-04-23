@@ -33,5 +33,6 @@ public class AirlineResponse {
     private UserDTO owner;
     private CityResponse headquartersCity;
     private Support support;
+    private Long updatedById;
 
 }

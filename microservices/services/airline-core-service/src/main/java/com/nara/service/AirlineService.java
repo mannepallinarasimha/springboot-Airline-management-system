@@ -11,11 +11,11 @@ import java.util.List;
 
 public interface AirlineService {
     AirlineResponse createAirline(AirlineRequest airlineRequest, Long ownerId);
-    AirlineResponse getAirlineByOwner(Long ownerId);
-    AirlineResponse getAirlineById(Long airlineId);
+    AirlineResponse getAirlineByOwner(Long ownerId) throws Exception;
+    AirlineResponse getAirlineById(Long airlineId) throws Exception;
     Page<AirlineResponse> getAllAirlines(Pageable pageable);
-    AirlineResponse updateAirline(AirlineRequest airlineRequest, Long ownerId);
-    void deleteAirline(Long id, Long ownerId);
-    AirlineResponse changeStatusByAdmin(Long airlineId, AirlineStatus airlineStatus);
+    AirlineResponse updateAirline(AirlineRequest airlineRequest, Long ownerId) throws Exception;
+    void deleteAirline(Long id, Long ownerId) throws Exception;
+    AirlineResponse changeStatusByAdmin(Long airlineId, AirlineStatus airlineStatus) throws Exception;
     List<AirlineDropDownItem>  getAirlineDropDown();
 }

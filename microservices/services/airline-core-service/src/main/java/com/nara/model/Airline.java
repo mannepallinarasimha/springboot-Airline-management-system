@@ -1,5 +1,6 @@
 package com.nara.model;
 
+import com.nara.embedable.Support;
 import com.nara.enums.AirlineStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -46,6 +47,9 @@ public class Airline {
     private String alliance;
     private Long headquartersCityId;
 
+    @Embedded
+    private Support support;
+
     @Column(nullable = false)
     @CreatedDate
     private Instant createdAt;
@@ -53,4 +57,6 @@ public class Airline {
     @Column(nullable = false)
     @LastModifiedDate
     private Instant updatedAt;
+
+    private Long updatedById;
 }

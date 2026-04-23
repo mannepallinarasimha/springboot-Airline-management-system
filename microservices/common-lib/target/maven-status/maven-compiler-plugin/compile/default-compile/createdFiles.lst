@@ -1,0 +1,12 @@
+com\nara\payload\response\AuthResponse.class
+com\nara\payload\request\CityRequest.class
+com\nara\payload\response\AirportResponse.class
+com\nara\enums\UserRole.class
+com\nara\payload\response\CityResponse.class
+com\nara\embedable\Address.class
+com\nara\dto\UserDTO.class
+com\nara\CommonLibApplication.class
+com\nara\payload\request\LoginRequest.class
+com\nara\payload\request\AirportRequest.class
+com\nara\embedable\GeoCode.class
+com\nara\payload\response\ApiResponse.class

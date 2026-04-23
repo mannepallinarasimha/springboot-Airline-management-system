@@ -43,7 +43,7 @@ public class AuthServiceImpl implements AuthService {
             throw new Exception("email already registered");
         }
         if(req.getRole() == UserRole.ROLE_SYSTEM_ADMIN){
-            throw new Exception("Ypu cannot sign up as system admins!");
+            throw new Exception("You cannot sign up as system admins!");
         }
         User newUser = User.builder()
                 .email(req.getEmail())
@@ -86,7 +86,7 @@ public class AuthServiceImpl implements AuthService {
         AuthResponse authResponse = new AuthResponse();
         authResponse.setJwt(jwt);
         authResponse.setUser(UserMapper.toDTO(user));
-        authResponse.setTitle("Welcome "+user.getFullName());
+        authResponse.setTitle("Welcome back: "+user.getFullName());
         authResponse.setMessage("Login Successfully!");
         return authResponse;
     }

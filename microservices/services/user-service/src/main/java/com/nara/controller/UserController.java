@@ -1,8 +1,6 @@
 package com.nara.controller;
 
 import com.nara.dto.UserDTO;
-import com.nara.mapper.UserMapper;
-import com.nara.model.User;
 import com.nara.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

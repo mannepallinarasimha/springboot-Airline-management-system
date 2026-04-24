@@ -48,15 +48,18 @@ public class FlightInstanceServiceImpl implements FlightInstanceService {
     }
 
     @Override
-    public FlightInstanceResponse updateFlightInstance(Long userId, FlightInstanceRequest flightInstanceRequest) {
-        return null;
+    public FlightInstanceResponse updateFlightInstance(Long userId, FlightInstanceRequest flightInstanceRequest) throws Exception {
+        FlightInstance existing = flightInstanceRepository.findById(userId).orElseThrow(()-> new Exception("Flight instance not found with id :"+userId));
+        FlightInstanceMapper.updateEntity(flightInstanceRequest, existing);
+
+        return convertToFlightInstanceResponse(flightInstanceRepository.save(existing));
     }
 
     @Override
     public FlightInstanceResponse getFlightInstanceById(Long id) throws Exception {
-        FlightInstance flightInstance = flightInstanceRepository.findById(id).orElseThrow(()-> new Exception("Flight instance not found with id :"+id));
+        FlightInstance existingFlightInstance = flightInstanceRepository.findById(id).orElseThrow(()-> new Exception("Flight instance not found with id :"+id));
 
-        return convertToFlightInstanceResponse(flightInstance);
+        return convertToFlightInstanceResponse(existingFlightInstance);
     }
 
     @Override
@@ -75,11 +78,14 @@ public class FlightInstanceServiceImpl implements FlightInstanceService {
     }
 
     @Override
-    public void deleteFlightInstance(Long id) {
-
+    public void deleteFlightInstance(Long id) throws Exception {
+        FlightInstance existing = flightInstanceRepository.findById(id).orElseThrow(()-> new Exception("Flight instance not found with id :"+id));
+        flightInstanceRepository.delete(existing);
     }
 
     private FlightInstanceResponse convertToFlightInstanceResponse(FlightInstance flightInstance){
+
+        // todo - watch airlineId-  service to service communication
         AirlineResponse airlineResponse = AirlineResponse.builder().id(flightInstance.getAirlineId()).build();
         AirportResponse departureAirport = AirportResponse.builder().id(flightInstance.getDepartureAirportId()).build();
         AirportResponse arrivalAirport = AirportResponse.builder().id(flightInstance.getArrivalAirportId()).build();

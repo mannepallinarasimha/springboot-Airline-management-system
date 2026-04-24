@@ -22,6 +22,9 @@ public class FlightServiceImpl implements FlightService {
 
     @Override
     public FlightResponse createFlight(Long airlineId, FlightRequest flightRequest) throws Exception {
+
+        //todo - watch airlineId
+
         if(flightRepository.existsByFlightNumber(flightRequest.getFlightNumber())){
             throw new Exception("Flight with number already exists");
         }
@@ -36,7 +39,7 @@ public class FlightServiceImpl implements FlightService {
                                                     Long departureAirportId,
                                                     Long arrivalAirportId,
                                                     Pageable pageable) {
-
+        // todo - watch airlineId
         return flightRepository.findByAirlineId(airlineId, departureAirportId, arrivalAirportId, pageable).map(this::convertToFlightResponse);
     }
 
@@ -79,11 +82,15 @@ public class FlightServiceImpl implements FlightService {
 
     @Override
     public void deleteFlight(Long airlineId, Long flightId) throws Exception {
+        //todo - watch airlineId
         Flight existing = flightRepository.findByAirlineIdAndId(airlineId, flightId).orElseThrow(() -> new Exception("Flight not found with id :"+flightId));
         flightRepository.delete(existing);
     }
 
     public FlightResponse convertToFlightResponse(Flight flight){
+
+        //todo - watch airlineId -  service to service communication
+
         AircraftResponse aircraftResponse = AircraftResponse.builder().id(flight.getAircraftId()).build();
         AirlineResponse airlineResponse = AirlineResponse.builder().id(flight.getAirlineId()).build();
         AirportResponse departureAirport = AirportResponse.builder().id(flight.getDepartureAirportId()).build();

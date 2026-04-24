@@ -1,25 +1,34 @@
 package com.nara.flight_ops_service.repository;
 
 import com.nara.flight_ops_service.model.Flight;
+import com.nara.flight_ops_service.model.FlightInstance;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
-public interface FlightRepository extends JpaRepository<Flight, Long> {
+public interface FlightInstanceRepository extends JpaRepository<FlightInstance, Long> {
     //JPQL query
     @Query("""
-            SELECT f from Flight f
-            where f.airlineId = :airlineId
-            and (:depId is null or f.departureAirportId = :depId)
-            and (:arrId is null or f.arrivalAirportId = :arrId)
+            SELECT fi from FlightInstance fi
+            where fi.airlineId = :airlineId
+            and (:departureAirportId is null or fi.departureAirportId = :departureAirportId)
+            and (:arrivalAirportId is null or fi.arrivalAirportId = :arrivalAirportId)
+            and (:flightId is null or fi.flight.id = :flightId)
+            and (:dayStart is null or fi.departureDateTime >= :dayStart)
+            and (:dayEnd is null or fi.arrivalDateTime <= :dayEnd)
     """)
-    Page<Flight> findByAirlineId(@Param("airlineId") Long airlineId,
-                                 @Param("depId") Long depId,
-                                 @Param("arrId") Long arrId,
+    List<FlightInstance> findByAirlineId(@Param("airlineId") Long airlineId,
+                                 @Param("departureAirportId") Long departureAirportId,
+                                 @Param("arrivalAirportId") Long arrivalAirportId,
+                                         @Param("flightId") Long flightId,
+                                         @Param("dayStart") LocalDateTime dayStart,
+                                         @Param("dayEnd") LocalDateTime dayEnd,
                                  Pageable pageable);
     boolean existsByFlightNumber(String flightNumber);
     boolean existsByFlightNumberAndIdNot(String flightNumber, Long flightId);

@@ -66,24 +66,32 @@ public class FlightScheduleServiceImpl implements FlightScheduleService {
     }
 
     @Override
-    public FlightScheduleResponse getFlightScheduleById(Long id) {
+    public FlightScheduleResponse getFlightScheduleById(Long id) throws Exception {
+        FlightSchedule flightSchedule = flightScheduleRepository.findById(id).orElseThrow(() -> new Exception("flight schedule not found with id: "+id));
 
-        return null;
+        return convertToFlightSchedule(flightSchedule);
     }
 
     @Override
     public List<FlightScheduleResponse> getFlightScheduleByAirline(Long userId) {
-        return List.of();
+        // todo - watch for airlineId
+        List<FlightSchedule> schedules = flightScheduleRepository.findByFlightAirlineId(userId);
+
+        return schedules.stream().map(this::convertToFlightSchedule).toList();
     }
 
     @Override
-    public FlightScheduleResponse updateFlightSchedule(Long id, FlightScheduleRequest flightScheduleRequest) {
-        return null;
+    public FlightScheduleResponse updateFlightSchedule(Long id, FlightScheduleRequest flightScheduleRequest) throws Exception {
+        FlightSchedule flightSchedule = flightScheduleRepository.findById(id).orElseThrow(() -> new Exception("flight schedule not found with id: "+id));
+        FlightScheduleMapper.updateEntity(flightScheduleRequest, flightSchedule);
+
+        return convertToFlightSchedule(flightScheduleRepository.save(flightSchedule));
     }
 
     @Override
-    public void deleteFlightSchedule(Long id) {
-
+    public void deleteFlightSchedule(Long id) throws Exception {
+        FlightSchedule flightSchedule = flightScheduleRepository.findById(id).orElseThrow(() -> new Exception("flight schedule not found with id: "+id));
+        flightScheduleRepository.delete(flightSchedule);
     }
 
     private FlightScheduleResponse convertToFlightSchedule(FlightSchedule flightSchedule){

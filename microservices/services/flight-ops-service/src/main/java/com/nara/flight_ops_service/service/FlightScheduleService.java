@@ -9,11 +9,11 @@ public interface FlightScheduleService {
 
     FlightScheduleResponse createFlightSchedule(Long airlineId, FlightScheduleRequest flightScheduleRequest) throws Exception;
 
-    FlightScheduleResponse getFlightScheduleById(Long id);
+    FlightScheduleResponse getFlightScheduleById(Long id) throws Exception;
 
     List<FlightScheduleResponse> getFlightScheduleByAirline(Long userId);
 
-    FlightScheduleResponse updateFlightSchedule(Long id, FlightScheduleRequest flightScheduleRequest);
+    FlightScheduleResponse updateFlightSchedule(Long id, FlightScheduleRequest flightScheduleRequest) throws Exception;
 
-    void deleteFlightSchedule(Long id);
+    void deleteFlightSchedule(Long id) throws Exception;
 }

@@ -24,6 +24,7 @@ public class FlightInstanceServiceImpl implements FlightInstanceService {
                 .id(1L)
                 .totalSeats(90)
                 .build();
+
         return null;
     }
 

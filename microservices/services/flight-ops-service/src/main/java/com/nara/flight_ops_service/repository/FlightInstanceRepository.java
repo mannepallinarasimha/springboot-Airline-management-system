@@ -30,7 +30,4 @@ public interface FlightInstanceRepository extends JpaRepository<FlightInstance, 
                                          @Param("dayStart") LocalDateTime dayStart,
                                          @Param("dayEnd") LocalDateTime dayEnd,
                                  Pageable pageable);
-    boolean existsByFlightNumber(String flightNumber);
-    boolean existsByFlightNumberAndIdNot(String flightNumber, Long flightId);
-    Optional<Flight> findByAirlineIdAndId(Long airlineId, Long flightId);
 }

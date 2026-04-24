@@ -1,7 +1,6 @@
 package com.nara.flight_ops_service.service.impl;
 
 import com.nara.flight_ops_service.mapper.FlightInstanceMapper;
-import com.nara.flight_ops_service.mapper.FlightMapper;
 import com.nara.flight_ops_service.model.Flight;
 import com.nara.flight_ops_service.model.FlightInstance;
 import com.nara.flight_ops_service.repository.FlightInstanceRepository;
@@ -17,6 +16,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Service
 @RequiredArgsConstructor
 public class FlightInstanceServiceImpl implements FlightInstanceService {
@@ -25,8 +27,10 @@ public class FlightInstanceServiceImpl implements FlightInstanceService {
 
     @Override
     public FlightInstanceResponse createFlightInstance(Long airlineId, FlightInstanceRequest flightInstanceRequest) throws Exception {
+
+        // todo - watch airlineId
         Flight flight = flightRepository.findById(flightInstanceRequest.getFlightId()).orElseThrow(() -> new Exception("Flight not found with id :"+flightInstanceRequest.getFlightId()));
-        //dummy aircraft -  when we impl figen client will fecth aircraft response
+        // todo - dummy aircraft -  when we impl fiegn client will fecth aircraft response -  service to service communication
         AircraftResponse aircraftResponse = AircraftResponse.builder()
                 .id(1L)
                 .totalSeats(90)
@@ -49,13 +53,25 @@ public class FlightInstanceServiceImpl implements FlightInstanceService {
     }
 
     @Override
-    public FlightInstanceResponse getFlightInstanceById(Long id) {
-        return null;
+    public FlightInstanceResponse getFlightInstanceById(Long id) throws Exception {
+        FlightInstance flightInstance = flightInstanceRepository.findById(id).orElseThrow(()-> new Exception("Flight instance not found with id :"+id));
+
+        return convertToFlightInstanceResponse(flightInstance);
     }
 
     @Override
-    public Page<FlightInstanceResponse> getByAirlineId(Long airlineId, Long departureAirportId, Long arrivalAirportId, Long flightId, Long onDate, Pageable pageable) {
-        return null;
+    public Page<FlightInstanceResponse> getByAirlineId(Long airlineId,
+                                                       Long departureAirportId,
+                                                       Long arrivalAirportId,
+                                                       Long flightId,
+                                                       LocalDate onDate,
+                                                       Pageable pageable) {
+        // todo - watch airlineId
+        LocalDateTime start = onDate !=null? onDate.atStartOfDay(): null;
+        LocalDateTime end = onDate !=null? onDate.plusDays(1).atStartOfDay(): null;
+        return flightInstanceRepository
+                .findByAirlineId(airlineId, departureAirportId, arrivalAirportId, flightId, start, end, pageable)
+                .map(this::convertToFlightInstanceResponse);
     }
 
     @Override

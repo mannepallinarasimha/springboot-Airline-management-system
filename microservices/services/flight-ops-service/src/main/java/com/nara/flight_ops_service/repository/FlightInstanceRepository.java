@@ -23,7 +23,7 @@ public interface FlightInstanceRepository extends JpaRepository<FlightInstance, 
             and (:dayStart is null or fi.departureDateTime >= :dayStart)
             and (:dayEnd is null or fi.arrivalDateTime <= :dayEnd)
     """)
-    List<FlightInstance> findByAirlineId(@Param("airlineId") Long airlineId,
+    Page<FlightInstance> findByAirlineId(@Param("airlineId") Long airlineId,
                                  @Param("departureAirportId") Long departureAirportId,
                                  @Param("arrivalAirportId") Long arrivalAirportId,
                                          @Param("flightId") Long flightId,

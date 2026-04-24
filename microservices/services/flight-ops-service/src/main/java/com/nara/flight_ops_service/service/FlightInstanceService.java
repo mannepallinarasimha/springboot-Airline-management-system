@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface FlightInstanceService {
-    FlightInstanceResponse createFlightInstance(Long airlineId, FlightInstanceRequest flightInstanceRequest);
+    FlightInstanceResponse createFlightInstance(Long airlineId, FlightInstanceRequest flightInstanceRequest) throws Exception;
     FlightInstanceResponse updateFlightInstance(Long userId, FlightInstanceRequest flightInstanceRequest);
     FlightInstanceResponse getFlightInstanceById(Long id);
     Page<FlightInstanceResponse> getByAirlineId(Long airlineId,

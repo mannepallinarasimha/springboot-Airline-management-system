@@ -4,6 +4,7 @@ import com.nara.flight_ops_service.model.Flight;
 import com.nara.flight_ops_service.repository.FlightRepository;
 import com.nara.flight_ops_service.service.FlightInstanceService;
 import com.nara.payload.request.FlightInstanceRequest;
+import com.nara.payload.response.AircraftResponse;
 import com.nara.payload.response.FlightInstanceResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -16,9 +17,13 @@ public class FlightInstanceServiceImpl implements FlightInstanceService {
     private final FlightRepository flightRepository;
 
     @Override
-    public FlightInstanceResponse createFlightInstance(Long airlineId, FlightInstanceRequest flightInstanceRequest) {
+    public FlightInstanceResponse createFlightInstance(Long airlineId, FlightInstanceRequest flightInstanceRequest) throws Exception {
         Flight flight = flightRepository.findById(flightInstanceRequest.getFlightId()).orElseThrow(() -> new Exception("Flight not found with id :"+flightInstanceRequest.getFlightId()));
-
+        //dummy aircraft -  when we impl figen client will fecth aircraft response
+        AircraftResponse aircraftResponse = AircraftResponse.builder()
+                .id(1L)
+                .totalSeats(90)
+                .build();
         return null;
     }
 

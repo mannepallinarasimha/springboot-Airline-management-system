@@ -46,6 +46,15 @@ public class FlightServiceImpl implements FlightService {
         return convertToFlightResponse(flight);
     }
 
+    /*
+    scenario-1
+    F-450 , now user want to update to F-451 -> in this scenario existsByFlightNumber() will work
+
+    scenario-2
+    F-451 -> user don't want to change flight but user wants to change departureAirportId ->
+
+     */
+
     @Override
     public FlightResponse updateFlight(Long flightId, FlightRequest flightRequest) throws Exception {
         Flight existing = flightRepository.findById(flightId).orElseThrow(() -> new Exception("Flight not found with id :"+flightId));
@@ -54,17 +63,24 @@ public class FlightServiceImpl implements FlightService {
         ){
             throw new Exception("Flight with number already exists");
         }
-        return null;
+        FlightMapper.updateEntity(flightRequest, existing);
+        Flight updated = FlightMapper.toEntity(flightRequest);
+
+        return convertToFlightResponse(updated);
     }
 
     @Override
-    public FlightResponse changeFlightStatus(Long flightId, FlightStatus status) {
-        return null;
+    public FlightResponse changeFlightStatus(Long flightId, FlightStatus status) throws Exception {
+        Flight existing = flightRepository.findById(flightId).orElseThrow(() -> new Exception("Flight not found with id :"+flightId));
+        existing.setStatus(status);
+
+        return convertToFlightResponse(flightRepository.save(existing));
     }
 
     @Override
-    public void deleteFlight(Long flightId) {
-
+    public void deleteFlight(Long airlineId, Long flightId) throws Exception {
+        Flight existing = flightRepository.findByAirlineIdAndId(airlineId, flightId).orElseThrow(() -> new Exception("Flight not found with id :"+flightId));
+        flightRepository.delete(existing);
     }
 
     public FlightResponse convertToFlightResponse(Flight flight){

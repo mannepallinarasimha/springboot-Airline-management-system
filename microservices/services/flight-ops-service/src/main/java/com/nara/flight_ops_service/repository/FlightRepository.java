@@ -1,0 +1,24 @@
+package com.nara.flight_ops_service.repository;
+
+import com.nara.flight_ops_service.model.Flight;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+public interface FlightRepository extends JpaRepository<Flight, Long> {
+    //JPQL query
+    @Query("""
+            SELECT f from Flight f
+            where f.airlineId = :airlineId
+            and (:depId is null or f.departureAirportId = :depId)
+            and (:arrId is null or f.arrivalAirportId = :arrId)
+    """)
+    Page<Flight> findByAirlineId(@Param("airlineId") Long airlineId,
+                                 @Param("depId") Long depId,
+                                 @Param("arrId") Long arrId,
+                                 Pageable pageable);
+    boolean existsByFlightNumber(String flightNumber);
+    boolean existsByFlightNumberAndIdNot(String flightNumber, Long flightId);
+}

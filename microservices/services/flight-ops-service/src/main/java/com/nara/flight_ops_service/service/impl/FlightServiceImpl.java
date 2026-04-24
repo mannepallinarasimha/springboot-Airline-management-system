@@ -84,9 +84,7 @@ public class FlightServiceImpl implements FlightService {
     }
 
     public FlightResponse convertToFlightResponse(Flight flight){
-        AircraftResponse aircraftResponse = AircraftResponse.builder()
-                .id(flight.getAircraftId())
-                .build();
+        AircraftResponse aircraftResponse = AircraftResponse.builder().id(flight.getAircraftId()).build();
         AirlineResponse airlineResponse = AirlineResponse.builder().id(flight.getAirlineId()).build();
         AirportResponse departureAirport = AirportResponse.builder().id(flight.getDepartureAirportId()).build();
         AirportResponse arrivalAirport = AirportResponse.builder().id(flight.getArrivalAirportId()).build();

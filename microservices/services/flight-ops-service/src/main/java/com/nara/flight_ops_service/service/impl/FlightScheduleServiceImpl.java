@@ -39,8 +39,8 @@ public class FlightScheduleServiceImpl implements FlightScheduleService {
         if(request.getEndDate().isBefore(request.getStartDate())){
             throw new Exception("end date is before start date");
         }
-        FlightSchedule savedSchedule = FlightScheduleMapper.toEntity(request, flight);
-
+        FlightSchedule flightScheduled = FlightScheduleMapper.toEntity(request, flight);
+        FlightSchedule savedSchedule = flightScheduleRepository.save(flightScheduled);
         //we need to create flights from start date to enddate
         List<DayOfWeek> operationDays = savedSchedule.getOperatingDays();
         LocalDate startDate = savedSchedule.getStartDate();

@@ -38,6 +38,8 @@ public class FlightScheduleMapper {
                 .flightNumber(flightSchedule.getFlight() != null ? flightSchedule.getFlight().getFlightNumber() : null)
                 .departureAirport(departure)
                 .arrivalAirport(arrival)
+                .departureTime(flightSchedule.getDepartureTime())
+                .arrivalTime(flightSchedule.getArrivalTime())
                 .startDate(flightSchedule.getStartDate())
                 .endDate(flightSchedule.getEndDate())
                 .operatingDays(flightSchedule.getOperatingDays())

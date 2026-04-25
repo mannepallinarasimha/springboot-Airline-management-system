@@ -5,6 +5,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,13 +26,13 @@ public class FlightRequest {
 
     private Long airlineId;
 
-    @NotBlank(message = "aircraft Id  is required")
+    @NotNull(message = "aircraftId is required")
     private Long aircraftId;
 
-    @NotBlank(message = "departure Airport Id  is required")
+    @NotNull(message = "departureAirportId is required")
     private Long departureAirportId;
 
-    @NotBlank(message = "arrival Airport Id  is required")
+    @NotNull(message = "arrival Airport Id  is required")
     private Long arrivalAirportId;
 
     private FlightStatus status;

@@ -1,0 +1,795 @@
+{
+  "info": {
+    "_postman_id": "138aebb5-c5fa-40be-8bb7-a2985c90e213",
+    "name": "Airline-System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17202112"
+  },
+  "item": [
+    {
+      "name": "CITY",
+      "item": [
+        {
+          "name": "create-city",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"name\":\"Mumbai\",\r\n\"cityCode\":\"BOM\",\r\n\"countryCode\":\"IN\",\r\n\"countryName\":\"India\",\r\n\"regionCode\":\"MH\",\r\n\"timeZoneOffset\":\"+05:30\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5004/api/cities",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5004",
+              "path": [
+                "api",
+                "cities"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "search-city",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"name\":\"Pune\",\r\n\"cityCode\":\"PNQ\",\r\n\"countryCode\":\"IN\",\r\n\"countryName\":\"India\",\r\n\"regionCode\":\"MH\",\r\n\"timeZoneOffset\":\"+05:30\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5004/api/cities/search?keyword=mu",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5004",
+              "path": [
+                "api",
+                "cities",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "keyword",
+                  "value": "mu"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "gate-All-cities",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"name\":\"Pune\",\r\n\"cityCode\":\"PNQ\",\r\n\"countryCode\":\"IN\",\r\n\"countryName\":\"India\",\r\n\"regionCode\":\"MH\",\r\n\"timeZoneOffset\":\"+05:30\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5004/api/cities",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5004",
+              "path": [
+                "api",
+                "cities"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Airport",
+      "item": [
+        {
+          "name": "create-airport",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"iataCode\":\"BOM\",\r\n\"name\":\"Chatrapathi Shivaji Maharaj International Airport\",\r\n\"detailedName\":\"Chatrapathi Shivaji Maharaj International Airport - Terminal 2\",\r\n\"timeZone\":\"Asia/Kolkata\",\r\n\"address\":{\r\n\"street\":\"Sahar Airport Road\",\r\n\"postalCode\":\"400099\"\r\n},\r\n\"cityId\":2,\r\n\"geoCode\":{\r\n\"latitude\":19.0896,\r\n\"longitude\":72.8656\r\n}\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5004/api/airports",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5004",
+              "path": [
+                "api",
+                "airports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get-all-airports",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"iataCode\":\"BOM\",\r\n\"name\":\"Chatrapathi Shivaji Maharaj International Airport\",\r\n\"detailedName\":\"Chatrapathi Shivaji Maharaj International Airport - Terminal 2\",\r\n\"timeZone\":\"Asia/Kolkata\",\r\n\"address\":{\r\n\"street\":\"Sahar Airport Road\",\r\n\"postalCode\":\"400099\"\r\n},\r\n\"cityId\":2,\r\n\"geoCode\":{\r\n\"latitude\":19.0896,\r\n\"longitude\":72.8656\r\n}\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5004/api/airports",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5004",
+              "path": [
+                "api",
+                "airports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get-airport- by- city",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5004/api/airports/city/2",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5004",
+              "path": [
+                "api",
+                "airports",
+                "city",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "USER",
+      "item": [
+        {
+          "name": "health-check",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"name\":\"Mumbai\",\r\n\"cityCode\":\"BOM\",\r\n\"countryCode\":\"IN\",\r\n\"countryName\":\"India\",\r\n\"regionCode\":\"MH\",\r\n\"timeZoneOffset\":\"+05:30\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5005/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5005",
+              "path": [
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "signup",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"fullName\":\"Rohit Malapati\",\r\n\"email\":\"rohit@gmail.com\",\r\n\"password\":\"123456789\",\r\n\"username\":\"rohit\",\r\n\"role\":\"ROLE_USER\",\r\n\"phone\":\"9999999\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5005/auth/signup",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5005",
+              "path": [
+                "auth",
+                "signup"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"email\":\"rohit@gmail.com\",\r\n\"password\":\"1234567891\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5005/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5005",
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get-all-users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5005/api/users",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5005",
+              "path": [
+                "api",
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get-user-by-id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5005/api/users/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5005",
+              "path": [
+                "api",
+                "users",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "AIRLINE-CORE",
+      "item": [
+        {
+          "name": "health-check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5006/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5006",
+              "path": [
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create-airline",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-User-Id",
+                "value": "1",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"iataCode\":\"SH\",\r\n\"icaoCode\":\"SHM\",\r\n\"name\":\"Narasimha Airline\",\r\n\"alias\":\"MN\",\r\n\"logoUrl\":\"https://mir-s3-cdn-cf.behance.net/projects/404/d51a4026586871.55655dedc6123.jpg\",\r\n\"website\":\"https://narasimha-airline.com\",\r\n\"status\":\"ACTIVE\",\r\n\"alliance\":\"Star Alliance\",\r\n\"headquarterCityId\":1,\r\n\"supportEmail\":\"narasimha@gmail.com\",\r\n\"supportPhone\":\"+91 9032787872\",\r\n\"supportHours\":\"09:00AM to 06:00PM\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5006/api/airlines",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5006",
+              "path": [
+                "api",
+                "airlines"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "change status",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-User-Id",
+                "value": "1",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"iataCode\":\"SH\",\r\n\"icaoCode\":\"SHM\",\r\n\"name\":\"Narasimha Airline\",\r\n\"alias\":\"MN\",\r\n\"logoUrl\":\"https://mir-s3-cdn-cf.behance.net/projects/404/d51a4026586871.55655dedc6123.jpg\",\r\n\"website\":\"https://narasimha-airline.com\",\r\n\"status\":\"ACTIVE\",\r\n\"alliance\":\"Star Alliance\",\r\n\"headquarterCityId\":1,\r\n\"supportEmail\":\"narasimha@gmail.com\",\r\n\"supportPhone\":\"+91 9032787872\",\r\n\"supportHours\":\"09:00AM to 06:00PM\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5006/api/airlines/1/ban",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5006",
+              "path": [
+                "api",
+                "airlines",
+                "1",
+                "ban"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get-all-airlines",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-User-Id",
+                "value": "1",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"iataCode\":\"SH\",\r\n\"icaoCode\":\"SHM\",\r\n\"name\":\"Narasimha Airline\",\r\n\"alias\":\"MN\",\r\n\"logoUrl\":\"https://mir-s3-cdn-cf.behance.net/projects/404/d51a4026586871.55655dedc6123.jpg\",\r\n\"website\":\"https://narasimha-airline.com\",\r\n\"status\":\"ACTIVE\",\r\n\"alliance\":\"Star Alliance\",\r\n\"headquarterCityId\":1,\r\n\"supportEmail\":\"narasimha@gmail.com\",\r\n\"supportPhone\":\"+91 9032787872\",\r\n\"supportHours\":\"09:00AM to 06:00PM\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5006/api/airlines",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5006",
+              "path": [
+                "api",
+                "airlines"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "AIRCRAFT",
+      "item": [
+        {
+          "name": "create-aircraft",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "X-User-Id",
+                "value": "1",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"code\":\"CRJ900-IND887\",\r\n\"model\":\"CRJ900\",\r\n\"manufacturer\":\"Bombarder\",\r\n\"seatingCapacity\":90,\r\n\"economySeats\":80,\r\n\"premiumSeats\":7,\r\n\"firstClassSeats\":1,\r\n\"status\":\"ACTIVE\",\r\n\"businessSeats\":2,\r\n\"cruisingSpeedKmh\":830,\r\n\"rangeKm\":2956,\r\n\"maxAltitudeFt\":41000,\r\n\"yearOfManufacture\":2017,\r\n\"registrationDate\":\"2017-07-25\",\r\n\"nextMaintenanceDate\":\"2026-10-05\",\r\n\"isAvailable\":true,\r\n\"currentAirportId\":1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5006/api/aircrafts",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5006",
+              "path": [
+                "api",
+                "aircrafts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get-by-aircraft",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "X-User-Id",
+                "value": "1",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5006/api/aircrafts/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5006",
+              "path": [
+                "api",
+                "aircrafts",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get-by-id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5006/api/aircrafts/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5006",
+              "path": [
+                "api",
+                "aircrafts",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "FLIGHT-OPS",
+      "item": [
+        {
+          "name": "Flight-instance",
+          "item": [
+            {
+              "name": "get-flight-instance-by-id",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "http://localhost:5007/api/flight-instances/1",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5007",
+                  "path": [
+                    "api",
+                    "flight-instances",
+                    "1"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "get-flight-instance-by-airline-id",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "X-Airline-Id",
+                    "value": "1",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "http://localhost:5007/api/flight-instances",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5007",
+                  "path": [
+                    "api",
+                    "flight-instances"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "create-flight-instance",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5007/api/flight-instances",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5007",
+                  "path": [
+                    "api",
+                    "flight-instances"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "Flight-schedule",
+          "item": [
+            {
+              "name": "create-flight-schedule",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "X-Airline-Id",
+                    "value": "1",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n\"flightId\":1,\r\n\"departureAirportId\":1,\r\n\"arrivalAirportId\":3,\r\n\"departureTime\":\"16:55:00\",\r\n\"arrivalTime\":\"17:45:00\",\r\n\"startDate\":\"2026-02-01\",\r\n\"endDate\":\"2026-02-25\",\r\n\"operatingDays\":[\r\n    \"MONDAY\"\r\n],\r\n\"isActive\":true\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://localhost:5007/api/schedules",
+                  "protocol": "http",
+                  "host": [
+                    "localhost"
+                  ],
+                  "port": "5007",
+                  "path": [
+                    "api",
+                    "schedules"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "health-check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5007/",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5007",
+              "path": [
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create-flight",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "AirlineId",
+                "value": "2",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n\"flightNumber\":\"FT008\",\r\n\"departureAirportId\":1,\r\n\"arrivalAirportId\":3,\r\n\"status\":\"SCHEDULED\",\r\n\"aircraftId\":1\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:5007/api/flights",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5007",
+              "path": [
+                "api",
+                "flights"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all flights by airline",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "AirlineId",
+                "value": "1",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5007/api/flights/airline",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5007",
+              "path": [
+                "api",
+                "flights",
+                "airline"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get all flights by id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "AirlineId",
+                "value": "1",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:5007/api/flights/3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5007",
+              "path": [
+                "api",
+                "flights",
+                "3"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

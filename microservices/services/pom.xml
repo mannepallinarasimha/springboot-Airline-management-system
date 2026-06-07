@@ -18,5 +18,6 @@
         <module>location-service</module>
         <module>airline-core-service</module>
         <module>flight-ops-service</module>
+        <module>payment-service</module>
     </modules>
 </project>

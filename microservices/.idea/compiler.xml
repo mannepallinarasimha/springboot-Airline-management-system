@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="common-lib" />
         <module name="user-service" />
+        <module name="payment-service" />
         <module name="airline-core-service" />
         <module name="flight-ops-service" />
       </profile>
@@ -29,6 +30,7 @@
       <module name="common-lib" options="-parameters" />
       <module name="flight-ops-service" options="-parameters" />
       <module name="location-service" options="-parameters" />
+      <module name="payment-service" options="-parameters" />
       <module name="user-service" options="-parameters" />
     </option>
   </component>

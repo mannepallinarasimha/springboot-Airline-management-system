@@ -1,0 +1,422 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Airline Payment Service API",
+    "version": "1.0.0",
+    "description": "Real-time payment processing system with mock gateway for flight ticket bookings",
+    "contact": {
+      "name": "Payment Service Team",
+      "url": "http://localhost:8084"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8084",
+      "description": "Local Development Server"
+    }
+  ],
+  "paths": {
+    "/api/v1/payments/health": {
+      "get": {
+        "summary": "Health Check",
+        "description": "Check if payment service is running",
+        "operationId": "healthCheck",
+        "tags": ["Health"],
+        "responses": {
+          "200": {
+            "description": "Service is healthy",
+            "content": {
+              "application/json": {
+                "example": {
+                  "status": "UP",
+                  "service": "Payment Service",
+                  "timestamp": "2026-06-07T20:35:41"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/payments/initiate": {
+      "post": {
+        "summary": "Initiate Payment",
+        "description": "Process a new payment transaction",
+        "operationId": "initiatePayment",
+        "tags": ["Payments"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "bookingId",
+                  "userId",
+                  "amount",
+                  "currency",
+                  "paymentMethod",
+                  "cardNumber",
+                  "cardholderName",
+                  "expiryDate",
+                  "cvv"
+                ],
+                "properties": {
+                  "bookingId": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "userId": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "amount": {
+                    "type": "number",
+                    "example": 5000.00
+                  },
+                  "currency": {
+                    "type": "string",
+                    "example": "INR"
+                  },
+                  "paymentMethod": {
+                    "type": "string",
+                    "enum": ["CREDIT_CARD", "DEBIT_CARD", "NET_BANKING", "UPI", "WALLET", "EMI"],
+                    "example": "CREDIT_CARD"
+                  },
+                  "cardNumber": {
+                    "type": "string",
+                    "description": "Test: 4111111111111111 (success), 4000000000000002 (failure)",
+                    "example": "4111111111111111"
+                  },
+                  "cardholderName": {
+                    "type": "string",
+                    "example": "John Doe"
+                  },
+                  "expiryDate": {
+                    "type": "string",
+                    "example": "12/25"
+                  },
+                  "cvv": {
+                    "type": "string",
+                    "example": "123"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "Flight booking payment"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Payment processed successfully",
+            "content": {
+              "application/json": {
+                "example": {
+                  "paymentId": 1,
+                  "bookingId": 1,
+                  "userId": 1,
+                  "amount": 5000.00,
+                  "currency": "INR",
+                  "status": "SUCCESS",
+                  "paymentMethod": "CREDIT_CARD",
+                  "transactionId": "txn-550e8400-e29b-41d4-a716-446655440000",
+                  "maskedCardNumber": "**** **** **** 1111",
+                  "createdAt": "2026-06-07T20:35:41",
+                  "updatedAt": "2026-06-07T20:35:41",
+                  "message": "Payment processed successfully"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid payment request"
+          }
+        }
+      }
+    },
+    "/api/v1/payments/{id}": {
+      "get": {
+        "summary": "Get Payment by ID",
+        "description": "Retrieve payment details by payment ID",
+        "operationId": "getPaymentById",
+        "tags": ["Payments"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Payment details retrieved",
+            "content": {
+              "application/json": {
+                "example": {
+                  "paymentId": 1,
+                  "bookingId": 1,
+                  "userId": 1,
+                  "amount": 5000.00,
+                  "currency": "INR",
+                  "status": "SUCCESS",
+                  "paymentMethod": "CREDIT_CARD",
+                  "transactionId": "txn-550e8400-e29b-41d4-a716-446655440000",
+                  "maskedCardNumber": "**** **** **** 1111",
+                  "createdAt": "2026-06-07T20:35:41",
+                  "updatedAt": "2026-06-07T20:35:41",
+                  "message": "Payment retrieved successfully"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Payment not found"
+          }
+        }
+      }
+    },
+    "/api/v1/payments/transaction/{transactionId}": {
+      "get": {
+        "summary": "Get Payment by Transaction ID",
+        "description": "Retrieve payment using transaction ID",
+        "operationId": "getPaymentByTransactionId",
+        "tags": ["Payments"],
+        "parameters": [
+          {
+            "name": "transactionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "txn-550e8400-e29b-41d4-a716-446655440000"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Payment found"
+          },
+          "404": {
+            "description": "Payment not found"
+          }
+        }
+      }
+    },
+    "/api/v1/payments/booking/{bookingId}": {
+      "get": {
+        "summary": "Get Payments by Booking",
+        "description": "Get all payments associated with a booking",
+        "operationId": "getPaymentsByBookingId",
+        "tags": ["Payments"],
+        "parameters": [
+          {
+            "name": "bookingId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of payments"
+          }
+        }
+      }
+    },
+    "/api/v1/payments/user/{userId}": {
+      "get": {
+        "summary": "Get User Payment History",
+        "description": "Retrieve all payments made by a user",
+        "operationId": "getUserPaymentHistory",
+        "tags": ["Payments"],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Payment history retrieved"
+          }
+        }
+      }
+    },
+    "/api/v1/payments/{id}/refund": {
+      "post": {
+        "summary": "Process Refund",
+        "description": "Process full or partial refund for a payment",
+        "operationId": "refundPayment",
+        "tags": ["Refunds"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "example": 1
+            }
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "number",
+              "example": 2500.00
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Refund processed successfully",
+            "content": {
+              "application/json": {
+                "example": {
+                  "paymentId": 1,
+                  "status": "REFUNDED",
+                  "message": "Refund processed successfully"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Refund processing failed"
+          }
+        }
+      }
+    },
+    "/api/v1/payments/status/{status}": {
+      "get": {
+        "summary": "Get Payments by Status",
+        "description": "Retrieve all payments with a specific status",
+        "operationId": "getPaymentsByStatus",
+        "tags": ["Payments"],
+        "parameters": [
+          {
+            "name": "status",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": ["PENDING", "SUCCESS", "FAILED", "CANCELLED", "REFUNDED"],
+              "example": "SUCCESS"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of payments with specified status"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "PaymentRequest": {
+        "type": "object",
+        "required": [
+          "bookingId",
+          "userId",
+          "amount",
+          "currency",
+          "paymentMethod",
+          "cardNumber",
+          "cardholderName",
+          "expiryDate",
+          "cvv"
+        ],
+        "properties": {
+          "bookingId": {
+            "type": "integer"
+          },
+          "userId": {
+            "type": "integer"
+          },
+          "amount": {
+            "type": "number"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "paymentMethod": {
+            "type": "string"
+          },
+          "cardNumber": {
+            "type": "string"
+          },
+          "cardholderName": {
+            "type": "string"
+          },
+          "expiryDate": {
+            "type": "string"
+          },
+          "cvv": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "PaymentResponse": {
+        "type": "object",
+        "properties": {
+          "paymentId": {
+            "type": "integer"
+          },
+          "bookingId": {
+            "type": "integer"
+          },
+          "userId": {
+            "type": "integer"
+          },
+          "amount": {
+            "type": "number"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "paymentMethod": {
+            "type": "string"
+          },
+          "transactionId": {
+            "type": "string"
+          },
+          "maskedCardNumber": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
